@@ -30,6 +30,20 @@ class Game {
         this.deck = 0;
       }
 
+      playerTurn() {
+        this.currentPlayer = !this.currentPlayer;
+
+      //   if (this.counter === 0) {
+      //     this.currentPlayer = this.player1;
+      //       this.counter ++;
+      //   } else {
+      //     this.currentPlayer = this.player2;
+      //     this.counter = 0;
+      //   }
+      // }
+
+    }
+
 
 
   // playCards(currentPlayer) {
