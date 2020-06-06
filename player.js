@@ -1,12 +1,13 @@
 class Player {
-  constructor() {
-    this.id = Date.now();
+  constructor(id, wins) {
+    this.id = id;
     this.wins = wins;
     this.hand = [];
   }
 
-  playCard() {
-
+  playCard(currentPlayer) {
+    var playCard = this.hand.shift();
+    game.centralPile.push(playCard);
   }
 
   saveWinsToStorage() {
