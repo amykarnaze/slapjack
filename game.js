@@ -23,6 +23,13 @@ class Game {
         return array;
       }
 
+      deal() {
+        var firstHalf = this.deck.splice(0, 26);
+        this.player1.hand.push(this.deck);
+        this.player2.hand.push(firstHalf);
+        this.deck = 0;
+      }
+
 
 
   // playCards(currentPlayer) {
