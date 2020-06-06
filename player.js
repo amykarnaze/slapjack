@@ -5,7 +5,10 @@ class Player {
     this.hand = [];
   }
 
-  playCard
+  playCard(currentPlayer) {
+    var playCard = this.hand.shift();
+    game.centralPile.push(playCard);
+  }
 
   saveWinsToStorage() {
 
