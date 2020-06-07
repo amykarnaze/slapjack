@@ -9,8 +9,16 @@ body {
 
 main {
   display: flex;
+  justify-content: space-evenly;
   width: 100%;
   padding-top: 200px;
+}
+
+.card-image {
+  height: 200px;
+  width: 120px;
+  background-image: image("./assets.back.png");
+
 }
 
 .cards-1 {
@@ -18,13 +26,11 @@ main {
   height: 350px;
   width: 275px;
   margin-left: 50px;
-  background-color: #FF6600
-  border: 1px solid green;
   margin: auto;
   border: 1px solid grey;
 
   /* align-self: flex-start; */
-  justify-content: space-evenly;
+  /* justify-content: space-evenly;  */
 
 }
 
@@ -32,23 +38,19 @@ main {
   display: flex;
   height: 350px;
   width: 275px;
-  margin-left: 50px;
-  background-color: #FF6600
-  border: 1px solid green;
+  border: 1px solid teal;
   margin: auto;
-  border: 1px solid grey;
   /* align-self: flex-start; */
-  justify-content: space-evenly;
-
+  /* justify-content: space-evenly; */
 }
 
 .cards-2 {
   display: flex;
   margin: auto;
-  border: 1px solid grey;
+  border: 1px solid magenta;
 
-  justify-content: space-evenly;
+  /* justify-content: space-evenly; */
   height: 350px;
   width: 275px;
-  margin-right: 50px;
+  /* margin-right: 50px; */
 }
