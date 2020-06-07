@@ -22,9 +22,8 @@ class Game {
   }
 
   deal() {
-    var firstHalf = this.deck.splice(0, 26);
-    this.player1.hand = firstHalf;
-    this.player2.hand = this.deck;
+    this.player1.hand = this.deck.splice(0, 26);
+    this.player2.hand = this.deck.splice(0, 26);
   }
 
   changePlayerTurn() {
@@ -36,37 +35,45 @@ class Game {
   }
 
   playToCenterPile() {
-    // if (this.currentPlayer.pile > 0)
+    if (this.currentPlayer.hand.length > 0) {
       var cardToPlay = this.currentPlayer.playCard();
       this.centralPile.unshift(cardToPlay);
+      }
       this.changePlayerTurn();
       console.log('center pile is', this.centralPile);
       // checkSlapConditions();
   }
+
+  // checkForEmptyHand() {
+  // }
 
   checkSlap() {
     if (this.centralPile[0] == this.centralPile[2] || this.centralPile[0] == this.centralPile[1] || this.centralPile === 11) {
       this.currentPlayer.hand = this.currentPlayer.hand.concat(this.centralPile);
       newGame.shuffle(this.currentPlayer.hand)
       this.centralPile = [];
+    }
+  }
     // } else if (checkWin())
-    } else {
-      this.currentPlayer.hand.pop()
-    }
-  }
+    // } else {
+    //   this.currentPlayer.hand.pop()
+    // }
 
-// //
-  checkWin() {
-    // var opponentHand = !this.currentPlayer;
-    if (currentPlayer.hand === 0 && currentPlayer.id === 1) {
 
-    }
-    if else (currentPlayer.hand === 0 && currentPlayer.id === 2) {
+  // checkWin() {
+  //   if (currentPlayer.hand === 0 && currentPlayer.id === 1) {
+  //     endGame();
+  //     // saveWinsToStorage();
+  //   }
+  //   else if (currentPlayer.hand === 0 && currentPlayer.id === 2) {
+  //     endGame();
+  //     // saveWinsToStorage();
+  //   }
+  // }
+  //   else {
+  //   if (opponentHand === [] && this.centralPile[0] === 11)
+  // }
 
-    }
-
-    if (opponentHand === [] && this.centralPile[0] === 11)
-  }
   // return T/f
   //if true, win met
   //if false return out.
@@ -74,11 +81,11 @@ class Game {
  // lose game in else
 //   }
 
-  endGame() {
-   this.deck = this.centralPile.concat(this.player1.hand, this.player2.hand);
-   this.shuffle()
-   this.deal();
-  }
+//   endGame() {
+//    this.deck = this.centralPile.concat(this.player1.hand, this.player2.hand);
+//    this.shuffle(this.deck)
+//    this.deal();
+//   }
 }
 
 
