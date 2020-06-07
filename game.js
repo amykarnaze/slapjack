@@ -1,87 +1,66 @@
 
 class Game {
-    constructor() {
-      this.deck = this.shuffle([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]);
-      this.centralPile = [];
-      this.player1 = new Player({id: 1, wins: 0, hand: []});
-      this.player2 = new Player({id: 2, wins: 0, hand: []});
-      this.counter = 0;
+  constructor() {
+    this.deck = this.shuffle([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]);
+    this.centralPile = [];
+    this.player1 = new Player(1);
+    this.player2 = new Player(2);
+    this.currentPlayer = this.player1;
+  }
+
+  shuffle(array) {
+      var tracker = array.length;
+      var temporaryLocation;
+      for (var i = 0; i < array.length; i++) {
+        var newIndex = Math.floor(Math.random() * tracker);
+        tracker--;
+        temporaryLocation = array[tracker];
+        array[tracker] = array[newIndex];
+        array[newIndex] = temporaryLocation;
+      }
+      return array;
+  }
+
+  deal() {
+    var firstHalf = this.deck.splice(0, 26);
+    this.player1.hand = firstHalf;
+    this.player2.hand = this.deck;
+  }
+
+  changePlayerTurn() {
+    if (this.currentPlayer.id === 1 && this.player2.hand.length > 0) {
+      this.currentPlayer = this.player2;
+    } else if (this.currentPlayer.id === 2 && this.player1.hand.length > 0) {
       this.currentPlayer = this.player1;
     }
+  }
 
+  playToCenterPile() {
+    // if (this.currentPlayer.pile > 0)
+      var cardToPlay = this.currentPlayer.playCard();
+      this.centralPile.unshift(cardToPlay);
+      this.changePlayerTurn();
+      console.log('center pile is', this.centralPile);
+  }
 
-    shuffle(array) {
-        var tracker = array.length;
-        var temporaryLocation;
-        for (var i = 0; i < array.length; i++) {
-          var newIndex = Math.floor(Math.random() * tracker);
-          tracker--;
-          temporaryLocation = array[tracker];
-          array[tracker] = array[newIndex];
-          array[newIndex] = temporaryLocation;
-        }
-        return array;
-      }
-
-      deal() {
-        var firstHalf = this.deck.splice(0, 26);
-        this.player1.hand.push(this.deck);
-        this.player2.hand.push(firstHalf);
-        this.deck = 0;
-      }
-
-      playerTurn() {
-        this.currentPlayer = !this.currentPlayer;
-
-      //   if (this.counter === 0) {
-      //     this.currentPlayer = this.player1;
-      //       this.counter ++;
-      //   } else {
-      //     this.currentPlayer = this.player2;
-      //     this.counter = 0;
-      //   }
-      // }
-
+  slapConditions() {
+    if (this.centralPile[0] === this.centralPile[2] || this.centralPile[0] === this.centralPile[1] || this.centralPile === 11) {
+      this.currentPlayer.pile.concat(this.centralPile)
+      shuffle(this.currentPlayer.pile)
+    } else {
+      //player loses, reset game.  penalizing invalid slap
     }
-
-
-
-  // playCards(currentPlayer) {
-  //player.playCard();
-  // }
-
-
-
-// module.exports = Game;
-
-// whose turn is it???
-
-
-// give half deck to p1 other half to p2
-// akternate. if downclick p cant p again
-// if click
+  }
 //
-// var cardPile = [];
-// 3 array
-// array 1- index
-// array 2
-// array 3
-// deal deck out to players
+//  winningConditions() {
 //
-// track players turn
-//
-// deal card to cardPile
-//
-// slap attempts jacks, doubles, and sandwiches
-//
-// Update player wins count
-//
-// reset dect and players to play next game after won
-//
+// // check by player w all the cards
+//   }
+
+}
+
 //
 // Player 1’s keyboard controls:
-//
-//
 //
 // q to deal a card
 // f to slap
