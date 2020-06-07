@@ -5,13 +5,14 @@ class Player {
     this.hand = [];
   }
 
-  playCard(currentPlayer) {
-    var playCard = this.hand.shift();
-    game.centralPile.push(playCard);
+  playCard() {
+    var removeCardToPlay = this.hand.shift();
+    console.log('Low', removeCardToPlay)
+    return removeCardToPlay;
   }
 
   saveWinsToStorage() {
-
+    this.wins++
   }
 
 }
