@@ -3,6 +3,10 @@
 // only care about image of top card
 var newGame = new Game();
 newGame.deal();
+// ** Deal with draw **
+// } else if(this.currentPlayer.hand.length === 0 && this.otherPlayer.hand.length === 0) {
+// this.isDraw = true;
+  // ** make alert w this later
 // document.addEventListener('keydown', keyPress);
 //
 // function keyPress() {
