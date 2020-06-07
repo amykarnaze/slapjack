@@ -41,24 +41,48 @@ class Game {
       this.centralPile.unshift(cardToPlay);
       this.changePlayerTurn();
       console.log('center pile is', this.centralPile);
+      // checkSlapConditions();
   }
 
-  slapConditions() {
-    if (this.centralPile[0] === this.centralPile[2] || this.centralPile[0] === this.centralPile[1] || this.centralPile === 11) {
-      this.currentPlayer.pile.concat(this.centralPile)
-      shuffle(this.currentPlayer.pile)
+  checkSlap() {
+    if (this.centralPile[0] == this.centralPile[2] || this.centralPile[0] == this.centralPile[1] || this.centralPile === 11) {
+      this.currentPlayer.hand = this.currentPlayer.hand.concat(this.centralPile);
+      newGame.shuffle(this.currentPlayer.hand)
+      this.centralPile = [];
+    // } else if (checkWin())
     } else {
-      //player loses, reset game.  penalizing invalid slap
+      this.currentPlayer.hand.pop()
     }
   }
-//
-//  winningConditions() {
-//
-// // check by player w all the cards
+
+// //
+  checkWin() {
+    // var opponentHand = !this.currentPlayer;
+    if (currentPlayer.hand === 0 && currentPlayer.id === 1) {
+
+    }
+    if else (currentPlayer.hand === 0 && currentPlayer.id === 2) {
+
+    }
+
+    if (opponentHand === [] && this.centralPile[0] === 11)
+  }
+  // return T/f
+  //if true, win met
+  //if false return out.
+ // check by player w all the cards
+ // lose game in else
 //   }
 
+  endGame() {
+   this.deck = this.centralPile.concat(this.player1.hand, this.player2.hand);
+   this.shuffle()
+   this.deal();
+  }
 }
 
+
+// find source for key codes
 //
 // Player 1’s keyboard controls:
 //
