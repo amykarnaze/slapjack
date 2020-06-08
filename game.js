@@ -13,9 +13,21 @@ class Game {
   makeDeck() {
     var deck = [];
     var suits = ['red', 'gold', 'green', 'blue'];
+    var redSuit = this.createEachSuit('red');
+    var goldSuit = this.createEachSuit('gold');
+    var greenSuit = this.createEachSuit('green');
+    var blueSuit = this.createEachSuit('blue');
+    deck = deck.concat(redSuit, goldSuit, greenSuit, blueSuit);
   }
 
-  
+  createEachSuit() {
+    var suit = [];
+    for (var i = 1; i <= 13; i++) {
+      var newCard = newCard(i, suitColor);
+      suit.push(newCard);
+    }
+    return suit;
+  }
 
   shuffle(array) {
       var tracker = array.length;
