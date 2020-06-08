@@ -7,12 +7,13 @@ class Player {
 
   playCard() {
     var removeCardToPlay = this.hand.shift();
-    console.log('Low', removeCardToPlay)
+    // console.log('Low', removeCardToPlay)
     return removeCardToPlay;
   }
 
-  saveWinsToStorage() {
-    this.wins++
-  }
+  // saveWinsToStorage() {
+  //   this.wins++
+  //   localStorage.setItem('string', JSON.stringify())
+  // }
 
 }
