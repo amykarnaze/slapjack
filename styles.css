@@ -25,15 +25,15 @@ main {
 }
 
 p {
-  margin-top: 400px;
+  /* margin-top: 400px; */
   color: teal;
   /* display: flex; */
 }
 
 .card-image {
-  height: 100px;
-  width: 120px;
-  background-image: image("./assets.back.png");
+  height: 250px;
+  width: 220px;
+  /* background-image: image("assets.back.png"); */
 
 }
 
@@ -44,10 +44,8 @@ p {
   margin-left: 50px;
   margin: auto;
   border: 1px solid orange;
-
   /* align-self: flex-start; */
   /* justify-content: space-evenly;  */
-
 }
 
 .central-pile {
@@ -69,4 +67,14 @@ p {
   height: 350px;
   width: 275px;
   /* margin-right: 50px; */
+}
+
+.monitor {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  /* margin-top: 100px; */
+  /* height: 100px;
+  width: 100px; */
+  /* border: solid 1px black; */
 }
