@@ -32,6 +32,8 @@ function keyPress(event) {
   updateDisplay();
 }
 
+function
+
 function updateDisplay() {
   var monitor = document.querySelector('.monitor');
   var topCard = game.centralPile[0];
@@ -65,11 +67,6 @@ function updateDisplay() {
   monitor.insertAdjacentHTML('afterbegin', template);
 }
 
-//
-// hideBackOfCard() {
-// or show/flip card value
-// }
-//
 // function headerAlert() {
 // var headerText = document.querySelector('header');
 // if (){}
@@ -86,6 +83,7 @@ function updateDisplay() {
 // headerText.innerText = `SLAPJACK! Player 2 wins!`
 //
 // }
+
 //
 // // if card is not a double, sandwich or jack &&
 // if (event.key === 70 || event.key === 74 && this.currentPlayer) {
