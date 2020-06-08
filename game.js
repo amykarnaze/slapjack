@@ -119,7 +119,13 @@ class Game {
       // endGame();
 
 
-  
+  emptyPile(currentSlapper, nonSlapper) {
+    if (this.currentSlapper.hand === 0 && this.nonSlapper.hand === 0) {
+      this.currentSlapper.hand.concat(this.centralPile)
+      }
+      shuffle(this.centerPile)
+      deal()
+    }
   }
   // checkWin() {
   //   //when player runs out of cards, and cant slap deck immediately
