@@ -1,33 +1,70 @@
 // var Game = require('./game.js');
 // examine value of suit and grab background img
 // only care about image of top card
-var newGame = new Game();
-newGame.deal();
+var game = new Game();
+game.shuffle(game.deck);
+game.deal();
 // ** Deal with draw **
 // } else if(this.currentPlayer.hand.length === 0 && this.otherPlayer.hand.length === 0) {
 // this.isDraw = true;
   // ** make alert w this later
-// document.addEventListener('keydown', keyPress);
+window.addEventListener('keydown', keyPress);
 //
-// function keyPress() {
-//   // p1 q, deal = 81
-//   if (event.key === 81) {
-//     game.player1.playToCenterPile();
-//   }
-//   // p1 f, slap = 70
-//   if (event.key === 70) {
-//     game.player1.checkSlap();
-//   }
-//   // p2, p, deal = 80
-//   if (event.key === 80) {
-//     game.player2.playToCenterPile();
-//   }
-//   // p2, j, slap = 74
-//   if (event.key === 74) {
-//     game.player2.checkSlap();
-//   }
-//
-// }
+function keyPress(event) {
+  console.log(event)
+  // p1 q, deal = 81
+  if (event.key === 'q') {
+    game.play('player1');
+
+  // p1 f, slap = 70
+  }else if (event.key === 'f') {
+    game.slapAction('player1');
+
+  // p2, p, deal = 80
+  }else if (event.key === 'p') {
+    game.play('player2');
+
+  // p2, j, slap = 74
+  }else if (event.key === 'j') {
+    game.slapAction('player2');
+    // game.player2.slapAction();
+  }
+  updateDisplay();
+}
+
+function updateDisplay() {
+  var monitor = document.querySelector('.monitor');
+  var topCard = game.centralPile[0];
+  var centralCardImage = document.querySelector('.central-pile .card-image');
+  if (topCard) {
+    centralCardImage.src = `./assets/${topCard.src}.png`;
+  } else {
+    centralCardImage.src = `./assets/wild.png`;
+  }
+  const template = `
+  <div>
+    <h3>Game</h3>
+    <p>Current Player: ${game.currentPlayer.id}</p>
+    <p>central Pile: ${game.centralPile.map(card => card.value)}</p>
+    <p>Pile Length: ${game.centralPile.length}</p>
+    </div>
+    <div>
+    <h3>Player 1</h3>
+    <p>Hand: ${game.player1.hand.map(card => card.value)}</p>
+    <p>Hand Length: ${game.player1.hand.length}</p>
+    <p>Wins: ${game.player1.wins}</p>
+    </div>
+    <div>
+    <h3>Player 2</h3>
+      <p>Hand: ${game.player2.hand.map(card => card.value)}</p>
+      <p>Length: ${game.player2.hand.length}</p>
+      <p>Wins: ${game.player2.wins}</p>
+    </div>
+
+  `;
+  monitor.insertAdjacentHTML('afterbegin', template);
+}
+
 //
 // hideBackOfCard() {
 // or show/flip card value
