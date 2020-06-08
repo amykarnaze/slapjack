@@ -7,10 +7,34 @@ body {
   margin: 0;
 }
 
+header {
+  margin: auto;
+  margin-top: 50px;
+  height: 55px;
+  width: 500px;
+  /* border: solid 1px black; */
+  color: teal;
+
+}
+
 main {
   display: flex;
+  justify-content: space-evenly;
   width: 100%;
-  padding-top: 200px;
+  padding-top: 100px;
+}
+
+p {
+  /* margin-top: 400px; */
+  color: teal;
+  /* display: flex; */
+}
+
+.card-image {
+  height: 250px;
+  width: 220px;
+  /* background-image: image("assets.back.png"); */
+
 }
 
 .cards-1 {
@@ -18,37 +42,39 @@ main {
   height: 350px;
   width: 275px;
   margin-left: 50px;
-  background-color: #FF6600
-  border: 1px solid green;
   margin: auto;
-  border: 1px solid grey;
-
+  border: 1px solid orange;
   /* align-self: flex-start; */
-  justify-content: space-evenly;
-
+  /* justify-content: space-evenly;  */
 }
 
 .central-pile {
   display: flex;
   height: 350px;
   width: 275px;
-  margin-left: 50px;
-  background-color: #FF6600
-  border: 1px solid green;
+  border: 1px solid teal;
   margin: auto;
-  border: 1px solid grey;
   /* align-self: flex-start; */
-  justify-content: space-evenly;
-
+  /* justify-content: space-evenly; */
 }
 
 .cards-2 {
   display: flex;
   margin: auto;
-  border: 1px solid grey;
+  border: 1px solid magenta;
 
-  justify-content: space-evenly;
+  /* justify-content: space-evenly; */
   height: 350px;
   width: 275px;
-  margin-right: 50px;
+  /* margin-right: 50px; */
+}
+
+.monitor {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  /* margin-top: 100px; */
+  /* height: 100px;
+  width: 100px; */
+  /* border: solid 1px black; */
 }
