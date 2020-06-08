@@ -8,6 +8,9 @@ class Game {
     this.currentPlayer = this.player1;
     this.isHandEmpty = false;
     this.otherPlayer = this.player2;
+    // this.topCard = this.centralPile[0];
+    // this.secondCard = this.centralPile[1];
+    // this.thirdCard = this.centralPile[2];
   }
 
   makeDeck() {
@@ -19,7 +22,6 @@ class Game {
     var blueSuit = this.createEachSuit('blue');
     deck = deck.concat(redSuit, goldSuit, greenSuit, blueSuit);
     // shuffle(this.deck)
-
     return deck;
   }
 
@@ -71,39 +73,54 @@ class Game {
       console.log('central pile is', this.centralPile[0].value);
   }
 
-  checkForWinConditons() {
-    if (this.otherPlayer.hand.length === 0 && this.centralPile[0].value === 10 && this.currentPlayer.hand.length > 0) {
-      // endGame();
-    }
-  }
+  // play() {
+  //   if (this.currentPlayer.hand.length > 0) {
+  //     var cardToPlay = this.currentPlayer.playCard();
+  //     this.centralPile.unshift(cardToPlay);
+  //     this.changePlayerTurn();
+  //   } else if (this.currentPlayer.hand.length === 0 && this.otherPlayer.hand.length === 0) {
+  //     console.log('central pile is', this.centralPile[0].value);
+  //     this.currentSlapper.hand.concat(this.centralPile)
+  // }
 
-  checkValidSlap() {
-    var card0 = this.centralPile[0] ? this.centralPile[0].value : "none";
-    var card1 = this.centralPile[1] ? this.centralPile[1].value : "none";
-    var card2 = this.centralPile[2] ? this.centralPile[2].value : "none";
-
-  }
-
-  slapAction() {
-    // var card0 = this.centralPile[0] ? this.centralPile[0].value : "none";
-    // var card1 = this.centralPile[1] ? this.centralPile[1].value : "none";
-    // var card2 = this.centralPile[2] ? this.centralPile[2].value : "none";
-    if (this.centralPile[0].value == this.centralPile[2].value || this.centralPile[0].value == this.centralPile[1].value || this.centralPile[0].value == 10) {
-      this.currentPlayer.hand = this.currentPlayer.hand.concat(this.centralPile);
-      // this.currentSlapper.hand = this.currentPlayer.hand.concat(this.centralPile);
-
-      game.shuffle(this.currentPlayer.hand)
+  slapAction(playerName) {
+    var firstCard = this.centralPile[0] && this.centralPile[0].value;
+    var secondCard = this.centralPile[1] && this.centralPile[1].value;
+    var thirdCard = this.centralPile[2] && this.centralPile[2].value;
+    var doubleCondition = firstCard === secondCard;
+    var sandwichCondition = firstCard === thirdCard;
+    var jackCondition = firstCard === 10;
+    var currentSlapper = this.player1.name === playerName ? this.player1 : this.player2;
+    var nonSlapper = this.player1.name === playerName ? this.player2 : this.player1;
+    if ((this.centralPile.length > 0 && jackCondition) || (this.centralPile.length > 1 && doubleCondition) || (this.centralPile.length > 2 && sandwichCondition)) {
+      currentSlapper.hand = currentSlapper.hand.concat(this.centralPile);
+      if (this.checkForWinConditons(currentSlapper, nonSlapper)) {
+        endGame();
+        shuffle(this.deck)
+        //display winner
+      }
+      game.shuffle(currentSlapper.hand)
       this.centralPile = [];
-      this.checkForWinConditons();
-//** GET this.currentSlapper FROM EVENT ** WHO IS CURRENT SLAPPER AND NON SLAPPPER**
     } else {
-      var lostCard = this.currentPlayer.hand.pop();
-      this.otherPlayer.hand.push(lostCard);
-      // var lostCard = this.currentSlapper.hand.pop();
-      // this.nonSlapper.hand.push(lostCard);
+      var lostCard = currentSlapper.hand.pop();
+      nonSlapper.hand.push(lostCard);
     }
   }
 
+  checkForWinConditons(currentSlapper, nonSlapper) {
+    if (currentSlapper.hand.length === 0 && this.centralPile[0].value !== 10) {
+        return true;
+
+    } else if (nonSlapper.hand.length === 0 && this.centralPile[0].value === 10) {
+        return true;
+
+    }
+    }
+      // endGame();
+
+
+  
+  }
   // checkWin() {
   //   //when player runs out of cards, and cant slap deck immediately
   //   //--> every play after look for win conditions
@@ -135,14 +152,11 @@ class Game {
   }
 }
 
-
-// find source for key codes
-//
-// Player 1’s keyboard controls:
-//
-// q to deal a card
-// f to slap
-// Player 2’s keyboard controls:
-//
-// p to deal a card
-// j to slap
+// let currentSlapper, nonSlapper
+// if (this.player1.name === playerName) {
+//   currentSlapper = this.player1
+//   nonSlapper = this.player2
+// } else {
+//   currentSlapper = this.player2
+//   nonSlapper = this.player1
+// }
