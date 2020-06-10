@@ -8,9 +8,6 @@ class Game {
     this.currentPlayer = this.player1;
     this.isHandEmpty = false;
     this.otherPlayer = this.player2;
-    // this.topCard = this.centralPile[0];
-    // this.secondCard = this.centralPile[1];
-    // this.thirdCard = this.centralPile[2];
   }
 
   makeDeck() {
@@ -21,7 +18,6 @@ class Game {
     var greenSuit = this.createEachSuit('green');
     var blueSuit = this.createEachSuit('blue');
     deck = deck.concat(redSuit, goldSuit, greenSuit, blueSuit);
-    // shuffle(this.deck)
     return deck;
   }
 
@@ -62,16 +58,6 @@ class Game {
     }
   }
 
-// why do hand
-
-  // look and see when putting card in central Pile, order
-      //if current player hand is 1 and other player is 0
-      // and last card in not a jack
-      // current player plays last card and concats centralPile and hand
-      //shuffle
-      //resume play
-
-
   play(playerName) {
     if (this.currentPlayer.hand.length === 0 && this.otherPlayer.hand.length === 0) {
       this.currentPlayer.hand = this.centralPile;
@@ -90,8 +76,7 @@ class Game {
             this.centralPile.unshift(cardToPlay);
         }
     }
-}
-
+  }
 
   slapAction(playerName) {
     var firstCard = this.centralPile[0] && this.centralPile[0].value;
@@ -102,12 +87,13 @@ class Game {
     var jackCondition = firstCard === 11;
     var currentSlapper = this.player1.name === playerName ? this.player1 : this.player2;
     var nonSlapper = this.player1.name === playerName ? this.player2 : this.player1;
-    if ((this.centralPile.length > 0 && jackCondition) || (this.centralPile.length > 1 && doubleCondition) || (this.centralPile.length > 2 && sandwichCondition)) {
-      currentSlapper.hand = currentSlapper.hand.concat(this.centralPile);
+    if ((this.centralPile.length > 0 && jackCondition) ||
+      (this.centralPile.length > 1 && doubleCondition) ||
+      (this.centralPile.length > 2 && sandwichCondition)) {
+        currentSlapper.hand = currentSlapper.hand.concat(this.centralPile);
       if (this.checkForWinConditons(currentSlapper, nonSlapper)) {
         this.endGame();
         this.shuffle(this.deck)
-        //display winner
       }
       game.shuffle(currentSlapper.hand)
       this.centralPile = [];
@@ -116,7 +102,6 @@ class Game {
       if (this.checkForWinConditons(currentSlapper, nonSlapper)) {
         this.endGame();
         this.shuffle(this.deck)
-        //display winner
       } else {
         var lostCard = currentSlapper.hand.pop();
         nonSlapper.hand.push(lostCard);
@@ -150,47 +135,3 @@ class Game {
   }
 
 }
-
-
-
-  // emptyPile(currentSlapper, nonSlapper) {
-  //   if (this.currentSlapper.hand === 0 && this.nonSlapper.hand === 0) {
-  //     this.currentSlapper.hand.concat(this.centralPile)
-  //     }
-  //     shuffle(this.centerPile)
-  //     deal()
-  //   }
-  // }
-  // checkWin() {
-  //   //when player runs out of cards, and cant slap deck immediately
-  //   //--> every play after look for win conditions
-  //   // on every keydown when the player has cards in hand and slaps a 10, game is over
-  //   if (currentPlayer.hand.length === 0 && currentPlayer.id === 1) {
-  //     endGame();
-  //   }
-  //   else if (currentPlayer.hand.length === 0 && currentPlayer.id === 2) {
-  //     endGame();
-  //     // saveWinsToStorage();
-  //   }
-  // }
-  //   else {
-  //   if (opponentHand === [] && this.centralPile[0] === 11)
-  // }
-
-  // return T/f
-  //if true, win met
-  //if false return out.
- // check by player w all the cards
- // lose game in else
-//   }
-
-
-
-// let currentSlapper, nonSlapper
-// if (this.player1.name === playerName) {
-//   currentSlapper = this.player1
-//   nonSlapper = this.player2
-// } else {
-//   currentSlapper = this.player2
-//   nonSlapper = this.player1
-// }
