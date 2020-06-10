@@ -1,109 +1,69 @@
-// var Game = require('./game.js');
-// examine value of suit and grab background img
-// only care about image of top card
-var game = new Game();
+var player1Wins = parseInt(JSON.parse(localStorage.getItem('player1')));
+var player2Wins = parseInt(JSON.parse(localStorage.getItem('player2')));
+var game = new Game(player1Wins, player2Wins);
+
 game.shuffle(game.deck);
 game.deal();
-// ** Deal with draw **
-// } else if(this.currentPlayer.hand.length === 0 && this.otherPlayer.hand.length === 0) {
-// this.isDraw = true;
-  // ** make alert w this later
+updateWinCount();
+
 window.addEventListener('keydown', keyPress);
-//
+
 function keyPress(event) {
-  console.log(event)
-  // p1 q, deal = 81
+  var headerText = document.querySelector('header');
+  var totalWinsBeforeP1 = game.player1.wins
+  var totalWinsBeforeP2 = game.player2.wins;
   if (event.key === 'q') {
+    headerText.innerText = '';
     game.play('player1');
-
-  // p1 f, slap = 70
-  }else if (event.key === 'f') {
-    game.slapAction('player1');
-
-  // p2, p, deal = 80
-  }else if (event.key === 'p') {
+  } else if (event.key === 'f') {
+    headerText.innerText = '';
+    headerAlert('player1', game.slapAction('player1'));
+  } else if (event.key === 'p') {
+    headerText.innerText = '';
     game.play('player2');
-
-  // p2, j, slap = 74
-  }else if (event.key === 'j') {
-    game.slapAction('player2');
-    // game.player2.slapAction();
+  } else if (event.key === 'j') {
+    headerText.innerText = '';
+    headerAlert('player2', game.slapAction('player2'));
+    //j runs HA and in order to evaluate slap Action at player 2, if good, T, if bad F
   }
   updateDisplay();
+  if (totalWinsBeforeP1 !== game.player1.wins) {
+    winAlert('player1');
+  }
+  if (totalWinsBeforeP2 !== game.player2.wins) {
+    winAlert('player2');
+  }
+}
+
+function headerAlert(playerName, isSlapGood) {
+  var headerText = document.querySelector('header');
+  if (!isSlapGood) {
+    headerText.innerText = `BAD SLAP! ${playerName} forfeits a card`
+  }
+  if (isSlapGood){
+    headerText.innerText = `SLAPJACK! ${playerName} takes the pile!`
+  }
+}
+
+function winAlert(playerName) {
+  document.querySelector('header').innerText = `SLAPJACK! ${playerName} wins!`
+  game.player1.saveWinsToStorage();
+  game.player2.saveWinsToStorage();
+}
+
+function updateWinCount() {
+  document.querySelector('.p2-wins').innerText = `${game.player2.wins} wins`;
+  document.querySelector('.p1-wins').innerText = `${game.player1.wins} wins`;
 }
 
 function updateDisplay() {
-  var monitor = document.querySelector('.monitor');
   var topCard = game.centralPile[0];
   var centralCardImage = document.querySelector('.central-pile .card-image');
   if (topCard) {
     centralCardImage.src = `./assets/${topCard.src}.png`;
   } else {
-    centralCardImage.src = `./assets/wild.png`;
+    centralCardImage.src = `./assets/back.png`;
   }
-  const template = `
-  <div>
-    <h3>Game</h3>
-    <p>Current Player: ${game.currentPlayer.id}</p>
-    <p>central Pile: ${game.centralPile.map(card => card.value)}</p>
-    <p>Pile Length: ${game.centralPile.length}</p>
-    </div>
-    <div>
-    <h3>Player 1</h3>
-    <p>Hand: ${game.player1.hand.map(card => card.value)}</p>
-    <p>Hand Length: ${game.player1.hand.length}</p>
-    <p>Wins: ${game.player1.wins}</p>
-    </div>
-    <div>
-    <h3>Player 2</h3>
-      <p>Hand: ${game.player2.hand.map(card => card.value)}</p>
-      <p>Length: ${game.player2.hand.length}</p>
-      <p>Wins: ${game.player2.wins}</p>
-    </div>
-
-  `;
-  monitor.insertAdjacentHTML('afterbegin', template);
+  document.querySelector('.p1-wins').innerText = `${game.player1.wins} Wins`;
+  document.querySelector('.p2-wins').innerText = `${game.player2.wins} Wins`;
 }
-
-//
-// hideBackOfCard() {
-// or show/flip card value
-// }
-//
-// function headerAlert() {
-// var headerText = document.querySelector('header');
-// if (){}
-// headerText.innerText = `BAD SLAP! forfeits a card to Player 2`
-// if (){}
-// headerText.innerText = `BAD SLAP! Player 2 forfeits a card to Player 1`
-// if (){}
-// headerText.innerText = `SLAPJACK! Player 1 takes the pile!`
-// if (){}
-// headerText.innerText = `SLAPJACK! Player 2 takes the pile!`
-// if (){}
-// headerText.innerText = `SLAPJACK! Player 1 wins!`
-// if (){}
-// headerText.innerText = `SLAPJACK! Player 2 wins!`
-//
-// }
-//
-// // if card is not a double, sandwich or jack &&
-// if (event.key === 70 || event.key === 74 && this.currentPlayer) {
-//   endGame();
-// }
-//
-// changePlayerWins() {
-//   var player1Text = document.querySelector('.p1-Wins');
-//   var player2Text = document.querySelector('.p2-Wins');
-//   player1Text.innerText = `${game.player1.wins} Wins`;
-//   player2Text.innerText = `${game.player2.wins} Wins`;
-// }
-
-
-// jack only condition:
-//if keydown is 70 and central pile has an 11, concat arrays.
-
-// if (event.key === 70 && game.centralPile[0] == 11) {
-//   game.currentPlayer.hand.concat(game.centralPile)
-//   shuffle();
-// }
