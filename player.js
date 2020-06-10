@@ -8,8 +8,8 @@ class Player {
 
   playCard() {
     if (game.currentPlayer.hand.length > 0) {
-    var removeCardToPlay = this.hand.shift();
-    return removeCardToPlay;
+      var removeCardToPlay = this.hand.shift();
+      return removeCardToPlay;
     }
   }
 
@@ -18,6 +18,7 @@ class Player {
   }
 
   saveWinsToStorage() {
+    localStorage.setItem(this.name, JSON.stringify(this.wins))
   }
 
 }
