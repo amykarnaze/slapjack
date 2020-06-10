@@ -1,12 +1,13 @@
-
-var game = new Game();
+var player1Wins = parseInt(JSON.parse(localStorage.getItem('player1')));
+var player2Wins = parseInt(JSON.parse(localStorage.getItem('player2')));
+var game = new Game(player1Wins, player2Wins);
 
 game.shuffle(game.deck);
 game.deal();
 updateWinCount();
 
 window.addEventListener('keydown', keyPress);
-//
+
 function keyPress(event) {
   var headerText = document.querySelector('header');
   var totalWinsBeforeP1 = game.player1.wins
@@ -46,10 +47,10 @@ function headerAlert(playerName, isSlapGood) {
 
 function winAlert(playerName) {
   document.querySelector('header').innerText = `SLAPJACK! ${playerName} wins!`
-  //refactor to only when a win happens
-
+  game.player1.saveWinsToStorage();
+  game.player2.saveWinsToStorage();
 }
-//find out how to pass it who won
+
 function updateWinCount() {
   document.querySelector('.p2-wins').innerText = `${game.player2.wins} wins`;
   document.querySelector('.p1-wins').innerText = `${game.player1.wins} wins`;
@@ -64,5 +65,5 @@ function updateDisplay() {
     centralCardImage.src = `./assets/back.png`;
   }
   document.querySelector('.p1-wins').innerText = `${game.player1.wins} Wins`;
-document.querySelector('.p2-wins').innerText = `${game.player2.wins} Wins`;
+  document.querySelector('.p2-wins').innerText = `${game.player2.wins} Wins`;
 }
