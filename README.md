@@ -1,4 +1,4 @@
-# slapjack
+# Slapjack
 
 ## Project Description ##
 
@@ -36,14 +36,28 @@ When a Jack is revealed, the player who is out of cards can slap it. The central
 
 ## In Action/Functionality ##
 
+**Doubles slap**
+
 ![Doubles Slap](https://media.giphy.com/media/dTzYOU3wRfNZWfz2XV/giphy.gif)
+
+**Jack slap**
+
 ![Jack slaps](https://media.giphy.com/media/W0F2E8r5wwfbIpI3CD/giphy.gif)
+
+**Sandwich slap**
+
 ![Sandwich slaps](https://media.giphy.com/media/fWw5fkR464DDodZZzM/giphy.gif)
+
+**Player 2 wins persist**
+
 ![player 2 wins persist](https://media.giphy.com/media/jmqVytm9vU0rsDa5YJ/giphy.gif)
+
+**Player 1 wins persist**
+
 ![player 1 wins persist](https://media.giphy.com/media/f6y65Yy6hq4cxpIaJF/giphy.gif)
 
 
-# Programming Languages Used #
+## Programming Languages Used ##
 
 HTML
 CSS
@@ -53,16 +67,16 @@ JavaScript
 * Vanilla JavaScript
 * HTML and CSS provided by [Turing Mod 1 Instructors](https://github.com/letakeane)
 
-**Comps Given**
+**Comp Given**
 https://frontend.turing.io/projects/module-1/slapjack.html
 
 **Contributors:**
 
 * [Amy Karnaze](https://github.com/amykarnaze)
 
-# Additional Links: #
+## Additional Links: ##
 
 * [Trello](https://trello.com/b/ozTkoP24/slapjack)
 * [Project page]()
 * [GitHub Link](https://github.com/amykarnaze/slapjack)
-* Clone Me (SSH):
+* Clone Me (SSH): git@github.com:amykarnaze/slapjack.git
