@@ -38,7 +38,9 @@ When a Jack is revealed, the player who is out of cards can slap it. The central
 ## In Action/Functionality ##
 
 ![Doubles Slap](https://giphy.com/gifs/LRN9o5icA7OBqm4oR0/html5)
+![Jack slaps](https://giphy.com/gifs/ln25t3aeFXYplpnNMW/html5)
 ![Jack slaps](https://vimeo.com/427608784)
+![Jack slaps](https://imgflip.com/gif/44m3cx)
 ![player 2 wins persist](https://giphy.com/gifs/ln25t3aeFXYplpnNMW/html5)
 ![player 1 wins persist](https://giphy.com/gifs/iFt6kQRiTi5K8TYjFU/html5)
 
