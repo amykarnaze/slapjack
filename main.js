@@ -3,6 +3,7 @@ var game = new Game();
 
 game.shuffle(game.deck);
 game.deal();
+updateWinCount();
 
 window.addEventListener('keydown', keyPress);
 //
@@ -50,7 +51,6 @@ function winAlert(playerName) {
 }
 //find out how to pass it who won
 function updateWinCount() {
-  
   document.querySelector('.p2-wins').innerText = `${game.player2.wins} wins`;
   document.querySelector('.p1-wins').innerText = `${game.player1.wins} wins`;
 }
@@ -63,4 +63,6 @@ function updateDisplay() {
   } else {
     centralCardImage.src = `./assets/back.png`;
   }
+  document.querySelector('.p1-wins').innerText = `${game.player1.wins} Wins`;
+document.querySelector('.p2-wins').innerText = `${game.player2.wins} Wins`;
 }
