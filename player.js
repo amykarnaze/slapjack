@@ -1,20 +1,23 @@
 class Player {
-  constructor(id) {
+  constructor(id, wins) {
     this.id = id;
-    this.wins = 0;
+    this.wins = wins ? wins : 0;
     this.hand = [];
     this.name = `player${id}`;
   }
 
   playCard() {
+    if (game.currentPlayer.hand.length > 0) {
     var removeCardToPlay = this.hand.shift();
-    // console.log('Low', removeCardToPlay)
     return removeCardToPlay;
+    }
   }
 
-  // saveWinsToStorage() {
-  //   this.wins++
-  //   localStorage.setItem('string', JSON.stringify())
-  // }
+  updateWins() {
+    this.wins ++;
+  }
+
+  saveWinsToStorage() {
+  }
 
 }
