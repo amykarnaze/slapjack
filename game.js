@@ -72,18 +72,25 @@ class Game {
       //resume play
 
 
-  play() {
-    if (this.currentPlayer.hand.length < 0) {
-      return
-    } else if (this.currentPlayer.hand.length > 0) {
-      var cardToPlay = this.currentPlayer.playCard();
-      this.centralPile.unshift(cardToPlay);
-      this.changePlayerTurn();
-    } else if (this.currentPlayer.hand.length === 0 && this.otherPlayer.hand.length === 0) {
-      console.log('central pile is', this.centralPile[0].value);
-      this.currentPlayer.hand.concat(this.centralPile)
+  play(playerName) {
+    if (this.currentPlayer.hand.length === 0 && this.otherPlayer.hand.length === 0) {
+      this.currentPlayer.hand = this.centralPile;
+      this.shuffle(this.currentPlayer.hand);
+      this.centralPile = [];
+    } else {
+        if (this.currentPlayer.hand.length > 0 &&
+          this.otherPlayer.hand.length > 0 &&
+          this.currentPlayer.name === playerName) {
+            var cardToPlay = this.currentPlayer.playCard();
+            this.centralPile.unshift(cardToPlay);
+            this.changePlayerTurn();
+            console.log('central pile is', this.centralPile[0].value);
+        } else if (this.currentPlayer.hand.length > 0 && this.currentPlayer.name === playerName) {
+            var cardToPlay = this.currentPlayer.playCard();
+            this.centralPile.unshift(cardToPlay);
+        }
     }
-  }
+}
 
 
   slapAction(playerName) {
@@ -131,12 +138,8 @@ class Game {
   }
 
   endGame() {
-    //how to display wins
-    // saveWinsToStorage();
-    // this.gameReset();
+    this.gameReset();
   }
-
-
 
   gameReset() {
    this.deck = this.centralPile.concat(this.player1.hand, this.player2.hand);
@@ -145,7 +148,7 @@ class Game {
    this.player2.hand = [];
    this.deal();
   }
-  
+
 }
 
 
