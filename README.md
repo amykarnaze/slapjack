@@ -2,8 +2,7 @@
 
 ## Project Description ##
 
-Let's play slapjack! Two users can hit keys to slap and play the game.
-This was a 5-day solo project.
+Let's play slapjack! Two users can hit keys to slap and play the game. Functionality includes key down events, that either deal a card from a players hand or slaps a card. If a card is slapped, the data model determines the outcome of the slap. This includes proper slap conditions, winning conditions, wrong slap conditions, and even which player is able to continue playing into the central pile. If a player wins a game, their score persists. This was a 5-day solo project.
 
 ## Learning Goals ##
 
@@ -37,14 +36,11 @@ When a Jack is revealed, the player who is out of cards can slap it. The central
 
 ## In Action/Functionality ##
 
-![Doubles Slap](https://giphy.com/gifs/LRN9o5icA7OBqm4oR0/html5)
-![Jack slaps](https://giphy.com/gifs/ln25t3aeFXYplpnNMW/html5)
-![Jack slaps](https://media.giphy.com/media/cMWi1CXwXvLWkwORzz/source.mp4)
-![Jack slaps](https://vimeo.com/427608784)
-![Jack slaps](https://imgflip.com/gif/44m3cx)
+![Doubles Slap](https://media.giphy.com/media/dTzYOU3wRfNZWfz2XV/giphy.gif)
 ![Jack slaps](https://media.giphy.com/media/W0F2E8r5wwfbIpI3CD/giphy.gif)
-![player 2 wins persist](https://giphy.com/gifs/ln25t3aeFXYplpnNMW/html5)
-![player 1 wins persist](https://giphy.com/gifs/iFt6kQRiTi5K8TYjFU/html5)
+![Sandwich slaps](https://media.giphy.com/media/fWw5fkR464DDodZZzM/giphy.gif)
+![player 2 wins persist](https://media.giphy.com/media/jmqVytm9vU0rsDa5YJ/giphy.gif)
+![player 1 wins persist](https://media.giphy.com/media/f6y65Yy6hq4cxpIaJF/giphy.gif)
 
 
 # Programming Languages Used #
